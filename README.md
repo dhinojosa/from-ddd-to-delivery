@@ -1,2 +1,3 @@
 # From DDD to Delivery
 
+https://miro.com/welcomeonboard/eVl4VHpxb210dGJBbGNTNndiUHZlZ0RORUZOdU1oWkdWaVpMRENibUN1S2diRkxYZDJjaVBkUjBYcHhLWDh4WXwzNDU4NzY0NTU2MTM1MzMxODk5fDI=?share_link_id=502238934277
