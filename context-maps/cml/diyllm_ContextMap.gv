@@ -1,0 +1,22 @@
+digraph "ContextMapGraph" {
+graph ["imagepath"="/var/folders/_x/2n6ld3jx3ng2w6pr1y29t7540000gn/T/GraphvizJava"]
+"CustomerContext" ["margin"="0.3","orientation"="223","shape"="egg","fontsize"="16","style"="bold","label"="CustomerContext\n","fontname"="sans-serif"]
+"OpsContext" ["margin"="0.3","orientation"="81","shape"="egg","fontsize"="16","style"="bold","label"="OpsContext\n","fontname"="sans-serif"]
+"MonitoringContext" ["margin"="0.3","orientation"="186","shape"="egg","fontsize"="16","style"="bold","label"="MonitoringContext\n","fontname"="sans-serif"]
+"TrainingContext" ["margin"="0.3","orientation"="342","shape"="egg","fontsize"="16","style"="bold","label"="TrainingContext\n","fontname"="sans-serif"]
+"CustomerContext" -> "OpsContext" ["headlabel"=<<table cellspacing="0" cellborder="1" border="0">
+<tr><td bgcolor="white" sides="r">D</td><td sides="trbl" bgcolor="white"><font>ACL</font></td></tr>
+</table>>,"labeldistance"="0","fontsize"="12","taillabel"=<<table cellspacing="0" cellborder="1" border="0">
+<tr><td bgcolor="white" sides="r">U</td><td sides="trbl" bgcolor="white"><font>OHS, PL</font></td></tr>
+</table>>,"style"="bold","label"="                                        ","dir"="none","fontname"="sans-serif"]
+"CustomerContext" -> "TrainingContext" ["headlabel"=<<table cellspacing="0" cellborder="1" border="0">
+<tr><td bgcolor="white" sides="r">D</td><td sides="trbl" bgcolor="white"><font>ACL</font></td></tr>
+</table>>,"labeldistance"="0","fontsize"="12","taillabel"=<<table cellspacing="0" cellborder="1" border="0">
+<tr><td bgcolor="white" sides="r">U</td><td sides="trbl" bgcolor="white"><font>OHS, PL</font></td></tr>
+</table>>,"style"="bold","label"="                                        ","dir"="none","fontname"="sans-serif"]
+"OpsContext" -> "MonitoringContext" ["headlabel"=<<table cellspacing="0" cellborder="1" border="0">
+<tr><td bgcolor="white" sides="r">D</td><td sides="trbl" bgcolor="white"><font>ACL</font></td></tr>
+</table>>,"labeldistance"="0","fontsize"="12","taillabel"=<<table cellspacing="0" cellborder="1" border="0">
+<tr><td bgcolor="white" sides="r">U</td><td sides="trbl" bgcolor="white"><font>PL</font></td></tr>
+</table>>,"style"="bold","label"="                                        ","dir"="none","fontname"="sans-serif"]
+}

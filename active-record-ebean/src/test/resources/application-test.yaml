@@ -1,0 +1,5 @@
+ebean:
+    test:
+        platform: postgres #, h2, postgres, mysql, oracle, sqlserver, hana, clickhouse, sqlite
+        ddlMode: dropCreate # none | dropCreate | migrations | create
+        dbName: school

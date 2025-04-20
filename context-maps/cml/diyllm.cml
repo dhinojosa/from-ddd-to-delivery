@@ -1,0 +1,63 @@
+ContextMap DIYLLM {
+    contains CustomerContext
+	contains OpsContext
+	contains TrainingContext
+	contains MonitoringContext
+
+    CustomerContext [U,OHS,PL]->[D,ACL] TrainingContext {
+    		implementationTechnology = "RestfulHTTP"
+    }
+
+    CustomerContext [U,OHS,PL]->[D,ACL] OpsContext {
+    		implementationTechnology = "RestfulHTTP"
+    }
+
+    OpsContext[U,PL]->[D,ACL] MonitoringContext {
+            implementationTechnology = "Kafka"
+    }
+
+    CustomerContext[U, OHS] -> [D, ACL] TrainingContext
+
+
+}
+
+BoundedContext CustomerContext implements CustomerRelationship, Marketing
+BoundedContext OpsContext
+BoundedContext TrainingContext implements Training
+BoundedContext MonitoringContext
+
+Domain DIYLLMDomain {
+
+	Subdomain Ops {
+		type CORE_DOMAIN
+	}
+
+	Subdomain Training {
+		type SUPPORTING_DOMAIN
+	}
+
+	Subdomain Monitoring {
+		type GENERIC_SUBDOMAIN
+	}
+
+	Subdomain Feedback {
+		type CORE_DOMAIN
+	}
+
+    Subdomain CustomerRelationship {
+		type CORE_DOMAIN
+	}
+
+	Subdomain Marketing {
+    	type SUPPORTING_DOMAIN
+    }
+
+    Subdomain Legal {
+        type CORE_DOMAIN
+    }
+
+    Subdomain Accounting {
+        type GENERIC_SUBDOMAIN
+    }
+}
+

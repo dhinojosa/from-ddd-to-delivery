@@ -4,26 +4,25 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.evolutionnext</groupId>
-    <artifactId>domain-driven-design</artifactId>
+    <artifactId>from-ddd-to-delivery</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>aggregates</module>
+        <module>transaction-script</module>
+        <module>active-record-ebean</module>
+        <module>cucumber</module>
+    </modules>
 
     <name>${project.artifactId}</name>
-    <url>https://github.com/dhinojosa/domain_driven_design</url>
+    <url>https://github.com/dhinojosa/from-ddd-to-delivery</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <avro.version>1.10.2</avro.version>
         <confluent.version>5.0.0</confluent.version>
     </properties>
-
-    <repositories>
-        <repository>
-            <id>confluent</id>
-            <url>https://packages.confluent.io/maven/</url>
-        </repository>
-    </repositories>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -53,6 +52,12 @@
                 <version>7.12.1</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.assertj</groupId>
+                <artifactId>assertj-core</artifactId>
+                <version>3.24.2</version>
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -88,37 +93,10 @@
             <artifactId>junit-platform-suite-engine</artifactId>
             <scope>test</scope>
         </dependency>
-
-        <dependency>
-            <groupId>org.apache.kafka</groupId>
-            <artifactId>kafka-clients</artifactId>
-            <version>3.4.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.kafka</groupId>
-            <artifactId>kafka-streams</artifactId>
-            <version>3.4.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.avro</groupId>
-            <artifactId>avro</artifactId>
-            <version>1.11.1</version>
-        </dependency>
-        <dependency>
-            <groupId>io.confluent</groupId>
-            <artifactId>kafka-avro-serializer</artifactId>
-            <version>7.4.0</version>
-        </dependency>
         <dependency>
             <groupId>org.easymock</groupId>
             <artifactId>easymock</artifactId>
             <version>5.1.0</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.assertj</groupId>
-            <artifactId>assertj-core</artifactId>
-            <version>3.24.2</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -128,28 +106,28 @@
         </dependency>
 
         <!-- Cucumber -->
-        <dependency>
-            <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-junit-platform-engine</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-java</artifactId>
-            <scope>test</scope>
-        </dependency>
 <!--        <dependency>-->
 <!--            <groupId>io.cucumber</groupId>-->
-<!--            <artifactId>cucumber-junit</artifactId>-->
+<!--            <artifactId>cucumber-junit-platform-engine</artifactId>-->
 <!--            <scope>test</scope>-->
 <!--        </dependency>-->
-<!--        &lt;!&ndash; cucumber dependencies &ndash;&gt;-->
 <!--        <dependency>-->
 <!--            <groupId>io.cucumber</groupId>-->
-<!--            <artifactId>cucumber-guice</artifactId>-->
-<!--            <version>7.11.1</version>-->
+<!--            <artifactId>cucumber-java</artifactId>-->
 <!--            <scope>test</scope>-->
 <!--        </dependency>-->
+<!--                <dependency>-->
+<!--                    <groupId>io.cucumber</groupId>-->
+<!--                    <artifactId>cucumber-junit</artifactId>-->
+<!--                    <scope>test</scope>-->
+<!--                </dependency>-->
+<!--                &lt;!&ndash; cucumber dependencies &ndash;&gt;-->
+<!--                <dependency>-->
+<!--                    <groupId>io.cucumber</groupId>-->
+<!--                    <artifactId>cucumber-guice</artifactId>-->
+<!--                    <version>7.11.1</version>-->
+<!--                    <scope>test</scope>-->
+<!--                </dependency>-->
         <!-- SLF4j dependencies -->
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -201,7 +179,7 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>42.5.1</version>
+            <version>42.7.4</version>
         </dependency>
         <!-- Arch Unit -->
         <dependency>
@@ -222,96 +200,104 @@
             <artifactId>context-map-generator</artifactId>
             <version>1.2.1</version>
         </dependency>
+        <!-- AssertJ -->
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.26.3</version>
+        </dependency>
     </dependencies>
     <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.avro</groupId>
-                <artifactId>avro-maven-plugin</artifactId>
-                <version>1.8.2</version>
-                <executions>
-                    <execution>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>schema</goal>
-                        </goals>
-                        <configuration>
-                            <sourceDirectory>${project.basedir}/src/main/avro/
-                            </sourceDirectory>
-                            <!--uncomment for eclipse only -->
-                            <!--outputDirectory>
-                                ${project.basedir}/src/main/java
-                            </outputDirectory-->
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M9</version>
-                <configuration>
-                    <excludedGroups>integration</excludedGroups>
-                    <includes>
-                        <include>**/*Property.java</include>
-                        <include>**/*Test.java</include>
-                    </includes>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <version>3.0.0-M9</version>
-                <configuration>
-                    <groups>integration</groups>
-                    <includes>
-                        <include>**/*Test.java</include>
-                    </includes>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>integration-test</goal>
-                            <goal>verify</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.10.1</version>
-                <configuration>
-                    <source>17</source>
-                    <target>17</target>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-site-plugin</artifactId>
-                <version>4.0.0-M5</version>
-            </plugin>
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.8</version>
-                <executions>
-                    <execution>
-                        <id>default-prepare-agent</id>
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>default-report</id>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>report</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.avro</groupId>
+                    <artifactId>avro-maven-plugin</artifactId>
+                    <version>1.8.2</version>
+                    <executions>
+                        <execution>
+                            <phase>generate-sources</phase>
+                            <goals>
+                                <goal>schema</goal>
+                            </goals>
+                            <configuration>
+                                <sourceDirectory>${project.basedir}/src/main/avro/
+                                </sourceDirectory>
+                                <!--uncomment for eclipse only -->
+                                <!--outputDirectory>
+                                    ${project.basedir}/src/main/java
+                                </outputDirectory-->
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>3.0.0-M9</version>
+                    <configuration>
+                        <excludedGroups>integration</excludedGroups>
+                        <includes>
+                            <include>**/*Property.java</include>
+                            <include>**/*Test.java</include>
+                        </includes>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>3.0.0-M9</version>
+                    <configuration>
+                        <groups>integration</groups>
+                        <includes>
+                            <include>**/*Test.java</include>
+                        </includes>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>integration-test</goal>
+                                <goal>verify</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.10.1</version>
+                    <configuration>
+                        <source>17</source>
+                        <target>17</target>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>4.0.0-M5</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>0.8.8</version>
+                    <executions>
+                        <execution>
+                            <id>default-prepare-agent</id>
+                            <goals>
+                                <goal>prepare-agent</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>default-report</id>
+                            <phase>prepare-package</phase>
+                            <goals>
+                                <goal>report</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
     <reporting>
         <plugins>
@@ -339,5 +325,6 @@
                 </reportSets>
             </plugin>
         </plugins>
+
     </reporting>
 </project>

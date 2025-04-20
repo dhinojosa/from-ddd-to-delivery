@@ -1,0 +1,43 @@
+digraph "ContextMapGraph" {
+graph ["imagepath"="/var/folders/_x/2n6ld3jx3ng2w6pr1y29t7540000gn/T/GraphvizJava"]
+"ClaimsManagement" ["margin"="0.3","orientation"="265","shape"="egg","fontsize"="16","style"="bold","label"="ClaimsManagement\n","fontname"="sans-serif"]
+"CustomerSelfService" ["margin"="0.3","orientation"="88","shape"="egg","fontsize"="16","style"="bold","label"="CustomerSelfService\n","fontname"="sans-serif"]
+"CustomerCore" ["margin"="0.3","orientation"="218","shape"="egg","fontsize"="16","style"="bold","label"="CustomerCore\n","fontname"="sans-serif"]
+"CustomerManagement" ["margin"="0.3","orientation"="179","shape"="egg","fontsize"="16","style"="bold","label"="CustomerManagement\n","fontname"="sans-serif"]
+"PolicyManagement" ["margin"="0.3","orientation"="251","shape"="egg","fontsize"="16","style"="bold","label"="PolicyManagement\n","fontname"="sans-serif"]
+"ClaimsManagement" -> "CustomerSelfService" ["headlabel"=<<table cellspacing="0" cellborder="0" border="0">
+<tr><td bgcolor="white">D</td></tr>
+</table>>,"labeldistance"="0","fontsize"="12","taillabel"=<<table cellspacing="0" cellborder="0" border="0">
+<tr><td bgcolor="white">U</td></tr>
+</table>>,"style"="bold","label"="                                        ","dir"="none","fontname"="sans-serif"]
+"CustomerCore" -> "CustomerManagement" ["headlabel"=<<table cellspacing="0" cellborder="0" border="0">
+<tr><td bgcolor="white">D</td></tr>
+</table>>,"labeldistance"="0","fontsize"="12","taillabel"=<<table cellspacing="0" cellborder="1" border="0">
+<tr><td bgcolor="white" sides="r">U</td><td sides="trbl" bgcolor="white"><font>OHS, PL</font></td></tr>
+</table>>,"style"="bold","label"="                                        ","dir"="none","fontname"="sans-serif"]
+"CustomerCore" -> "PolicyManagement" ["headlabel"=<<table cellspacing="0" cellborder="1" border="0">
+<tr><td bgcolor="white" sides="r">D</td><td sides="trbl" bgcolor="white"><font>ACL</font></td></tr>
+</table>>,"labeldistance"="0","fontsize"="12","taillabel"=<<table cellspacing="0" cellborder="1" border="0">
+<tr><td bgcolor="white" sides="r">U</td><td sides="trbl" bgcolor="white"><font>OHS, PL</font></td></tr>
+</table>>,"style"="bold","label"="                                        ","dir"="none","fontname"="sans-serif"]
+"CustomerCore" -> "ClaimsManagement" ["headlabel"=<<table cellspacing="0" cellborder="0" border="0">
+<tr><td bgcolor="white">D</td></tr>
+</table>>,"labeldistance"="0","fontsize"="12","taillabel"=<<table cellspacing="0" cellborder="1" border="0">
+<tr><td bgcolor="white" sides="r">U</td><td sides="trbl" bgcolor="white"><font>OHS, PL</font></td></tr>
+</table>>,"style"="bold","label"="                                        ","dir"="none","fontname"="sans-serif"]
+"CustomerCore" -> "CustomerSelfService" ["headlabel"=<<table cellspacing="0" cellborder="1" border="0">
+<tr><td bgcolor="white" sides="r">D</td><td sides="trbl" bgcolor="white"><font>CF</font></td></tr>
+</table>>,"labeldistance"="0","fontsize"="12","taillabel"=<<table cellspacing="0" cellborder="1" border="0">
+<tr><td bgcolor="white" sides="r">U</td><td sides="trbl" bgcolor="white"><font>OHS, PL</font></td></tr>
+</table>>,"style"="bold","label"="                                        ","dir"="none","fontname"="sans-serif"]
+"PolicyManagement" -> "ClaimsManagement" ["headlabel"=<<table cellspacing="0" cellborder="0" border="0">
+<tr><td bgcolor="white">D</td></tr>
+</table>>,"labeldistance"="0","fontsize"="12","taillabel"=<<table cellspacing="0" cellborder="0" border="0">
+<tr><td bgcolor="white">U</td></tr>
+</table>>,"style"="bold","label"="                                        ","dir"="none","fontname"="sans-serif"]
+"PolicyManagement" -> "CustomerSelfService" ["headlabel"=<<table cellspacing="0" cellborder="0" border="0">
+<tr><td bgcolor="white">D</td></tr>
+</table>>,"labeldistance"="0","fontsize"="12","taillabel"=<<table cellspacing="0" cellborder="0" border="0">
+<tr><td bgcolor="white">U</td></tr>
+</table>>,"style"="bold","label"="                                        ","dir"="none","fontname"="sans-serif"]
+}

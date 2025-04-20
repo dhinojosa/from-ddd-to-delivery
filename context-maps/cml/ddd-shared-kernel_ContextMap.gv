@@ -1,0 +1,17 @@
+digraph "ContextMapGraph" {
+graph ["imagepath"="/var/folders/_x/2n6ld3jx3ng2w6pr1y29t7540000gn/T/GraphvizJava"]
+"CargoBookingContext" ["margin"="0.3","orientation"="140","shape"="egg","fontsize"="16","style"="bold","label"="CargoBookingContext\n","fontname"="sans-serif"]
+"VoyagePlanningContext" ["margin"="0.3","orientation"="284","shape"="egg","fontsize"="16","style"="bold","label"="VoyagePlanningContext\n","fontname"="sans-serif"]
+"LocationContext" ["margin"="0.3","orientation"="242","shape"="egg","fontsize"="16","style"="bold","label"="LocationContext\n","fontname"="sans-serif"]
+"CargoBookingContext" -> "VoyagePlanningContext" ["fontsize"="12","style"="bold","label"="Shared Kernel","dir"="none","fontname"="sans-serif"]
+"LocationContext" -> "VoyagePlanningContext" ["headlabel"=<<table cellspacing="0" cellborder="0" border="0">
+<tr><td bgcolor="white">D</td></tr>
+</table>>,"labeldistance"="0","fontsize"="12","taillabel"=<<table cellspacing="0" cellborder="0" border="0">
+<tr><td bgcolor="white">U</td></tr>
+</table>>,"style"="bold","label"="                                        ","dir"="none","fontname"="sans-serif"]
+"LocationContext" -> "CargoBookingContext" ["headlabel"=<<table cellspacing="0" cellborder="0" border="0">
+<tr><td bgcolor="white">D</td></tr>
+</table>>,"labeldistance"="0","fontsize"="12","taillabel"=<<table cellspacing="0" cellborder="0" border="0">
+<tr><td bgcolor="white">U</td></tr>
+</table>>,"style"="bold","label"="                                        ","dir"="none","fontname"="sans-serif"]
+}
