@@ -8,6 +8,8 @@ import io.cucumber.guice.InjectorSource;
 public class GuiceInjectorSource implements InjectorSource {
     @Override
     public Injector getInjector() {
-        return Guice.createInjector(Stage.PRODUCTION, CucumberModules.createScenarioModule(), new com.xyzcorp.CucumberModules());
+        return Guice.createInjector(Stage.PRODUCTION,
+            CucumberModules.createScenarioModule(),
+            new com.xyzcorp.CucumberModules());
     }
 }
