@@ -17,7 +17,6 @@ public class OrderApplicationService {
         this.customerRepository = customerRepository;
     }
 
-    @Transactional
     public void createOrder(Order order) {
         Customer customer = customerRepository.getCustomer(order.getCustomerId());
         OrderDomainService.checkCredit(order, customer);
